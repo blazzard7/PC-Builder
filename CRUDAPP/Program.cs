@@ -2,7 +2,11 @@ var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 List<PC> repo = [];
 
-app.MapGet("/", () => "Hello World!");
+app.MapGet("/pc", () => GetPC());
+app.MapGet("/pc/id",(int id) => FindPC(id));
+app.MapPost("/pc", (PC pc)=> CreatePC(pc));
+app.MapPut("/pc",(PC pc)=>UpdatePC(pc));
+app.MapDelete("/pc/{id}",(int id)=>DeletePC(id));
 
 app.Run();
 List<PC> GetPC() => repo;
